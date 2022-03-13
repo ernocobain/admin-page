@@ -1,67 +1,27 @@
+import 'package:admin/pages/dashboard/dasboard_page.dart';
+import 'package:admin/pages/post/add_page/add_page.dart';
+import 'package:admin/pages/post/add_post/add_post_page.dart';
+import 'package:admin/pages/post/trash/trash_page.dart';
+import 'package:admin/pages/settings/settings_page.dart';
+import 'package:admin/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     title: "Dhikrama Admin",
     debugShowCheckedModeBanner: false,
-    home: WebApp(),
+    initialRoute: HomePage.id,
+    routes: _routes,
   ));
 }
 
-class WebApp extends StatelessWidget {
-  const WebApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AdminScaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Dashboard"),
-      ),
-      body: Text(("test")),
-      sideBar: const SideBar(
-        items: [
-          MenuItem(
-            title: "Dashboard",
-            icon: Icons.dashboard_sharp,
-            route: "/dashboard",
-          ),
-          MenuItem(
-            title: "Post",
-            icon: Icons.post_add_sharp,
-            route: "/post",
-            children: [
-              MenuItem(
-                title: "Add Post",
-                icon: Icons.post_add,
-                route: "/post-add",
-              ),
-              MenuItem(
-                title: "Add Page",
-                icon: Icons.pages,
-                route: "/page-add",
-              ),
-              MenuItem(
-                title: "Trash",
-                icon: Icons.post_add_sharp,
-                route: "/trash-post",
-              )
-            ],
-          ),
-          MenuItem(
-            title: "Plugin",
-            icon: Icons.abc,
-            route: "/plugin",
-          ),
-          MenuItem(
-            title: "Settings",
-            icon: Icons.settings,
-            route: "/settings",
-          ),
-        ],
-        selectedRoute: '/',
-      ),
-    );
-  }
+Map<String, WidgetBuilder> get _routes {
+  return {
+    HomePage.id: (context) => const HomePage(),
+    DashboardPage.id: (context) => const DashboardPage(),
+    AddPostPage.id: (context) => const AddPostPage(),
+    AddPage.id: (context) => const AddPage(),
+    TrashPage.id: (context) => const TrashPage(),
+    SettingsPage.id: (context) => const SettingsPage(),
+  };
 }
